@@ -1,0 +1,10 @@
+連線：
+ssh jylai0810@hpclogin01.cs.nycu.edu.tw
+密碼：
+alex920810
+上傳資料夾：
+scp -r ~/Desktop/ParallelProgramming/HW* jylai0810@hpclogin01.cs.nycu.edu.tw:
+下載資料夾：
+scp -r jylai0810@hpclogin01.cs.nycu.edu.tw:HW* Desktop/ParallelProgramming
+結束：
+logout

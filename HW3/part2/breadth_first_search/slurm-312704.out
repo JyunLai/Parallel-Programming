@@ -1,0 +1,91 @@
+Max system threads = 4
+Running with 4 threads
+
+Graph: grid1000x1000.graph
+
+Top down bfs
+ref_time: 0.0253208s
+stu_time: 0.0524523s
+
+Bottom up bfs
+ref_time: 1.10502s
+stu_time: 1.31945s
+
+Hybrid bfs
+ref_time: 0.370935s
+stu_time: 0.0539405s
+
+Graph: soc-livejournal1_68m.graph
+
+Top down bfs
+ref_time: 0.161828s
+stu_time: 0.376578s
+
+Bottom up bfs
+ref_time: 0.145208s
+stu_time: 0.456626s
+
+Hybrid bfs
+ref_time: 0.0767209s
+stu_time: 0.185157s
+
+Graph: com-orkut_117m.graph
+
+Top down bfs
+ref_time: 0.188706s
+stu_time: 0.494308s
+
+Bottom up bfs
+ref_time: 0.158599s
+stu_time: 0.318371s
+
+Hybrid bfs
+ref_time: 0.0518377s
+stu_time: 0.128022s
+
+Graph: random_500m.graph
+
+Top down bfs
+ref_time: 2.89016s
+stu_time: 5.88247s
+
+Bottom up bfs
+ref_time: 10.0697s
+stu_time: 13.0258s
+
+Hybrid bfs
+ref_time: 1.96457s
+stu_time: 2.26734s
+
+Graph: rmat_200m.graph
+
+Top down bfs
+ref_time: 1.32785s
+stu_time: 2.36551s
+
+Bottom up bfs
+ref_time: 1.50241s
+stu_time: 2.90295s
+
+Hybrid bfs
+ref_time: 0.854931s
+stu_time: 1.26828s
+
+
+--------------------------------------------------------------------------
+SCORES :                    |   Top-Down    |   Bott-Up    |    Hybrid    |
+--------------------------------------------------------------------------
+grid1000x1000.graph         |      1.13 / 2 |     3.00 / 3 |     3.00 / 3 |
+--------------------------------------------------------------------------
+soc-livejournal1_68m.graph  |      0.92 / 2 |     0.71 / 3 |     1.29 / 3 |
+--------------------------------------------------------------------------
+com-orkut_117m.graph        |      0.73 / 2 |     1.79 / 3 |     1.23 / 3 |
+--------------------------------------------------------------------------
+random_500m.graph           |      3.50 / 6 |     7.00 / 7 |     7.00 / 7 |
+--------------------------------------------------------------------------
+rmat_200m.graph             |      4.34 / 6 |     4.45 / 7 |     6.64 / 7 |
+--------------------------------------------------------------------------
+SUM                         |    10.61 / 18 |   16.94 / 23 |   19.15 / 23 |
+--------------------------------------------------------------------------
+TOTAL                                                      |  46.70 / 64 |
+--------------------------------------------------------------------------
