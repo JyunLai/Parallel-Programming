@@ -8,3 +8,20 @@ scp -r ~/Desktop/ParallelProgramming/HW* jylai0810@hpclogin01.cs.nycu.edu.tw:
 scp -r jylai0810@hpclogin01.cs.nycu.edu.tw:HW* Desktop/ParallelProgramming
 結束：
 logout
+
+開啟新的tmux視窗：
+tmux new -s sim
+執行config_mac.txt並觀察效能：
+time ./bin/OMicroN config_mac.txt
+暫時離開tmux視窗：
+Ctrl+b, d
+重新連線tmux視窗：
+tmux attach -t sim
+列出所有tmux視窗：
+tmux ls
+強制關閉tmux視窗：
+tmux kill-session -t sim
+上傳OMicroN資料夾：
+rsync -av Desktop/ParallelProgramming/OMicroN jylai0810@linux1.cs.nycu.edu.tw:
+下載：
+用scp......
