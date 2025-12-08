@@ -57,7 +57,7 @@ void worker_thread_start(WorkerArgs *const args)
     printf("Thread %d took %.4f ms to complete.\n", args->threadId, duration.count());
 }
 */
-
+/*
 // Q3 & Q4
 void worker_thread_start(WorkerArgs *const args)
 {
@@ -75,6 +75,57 @@ void worker_thread_start(WorkerArgs *const args)
     std::chrono::duration<double, std::milli> duration = end_time - start_time;
     printf("Thread %d (Interleaved) took %.4f ms to complete.\n", args->threadId, duration.count());
     
+}
+*/
+// 最終優化版本 (手動內聯 + 微觀優化)
+void worker_thread_start(WorkerArgs *const args)
+{
+    // 1. 將常數計算提到最外層，只計算一次
+    float dx = (args->x1 - args->x0) / args->width;
+    float dy = (args->y1 - args->y0) / args->height;
+
+    // 2. 外層迴圈依然是高效的交錯式分配
+    for (unsigned int y = args->threadId; y < args->height; y += args->numThreads) {
+        
+        // --- 手動內聯 mandelbrot_serial 的邏輯 ---
+        // 預先計算好當前行的 c_im 和在 output 陣列中的起始位置
+        float c_im = args->y0 + y * dy;
+        int row_start_index = y * args->width;
+
+        // 3. 內層迴圈處理該行的每一個像素
+        for (unsigned int x = 0; x < args->width; ++x) {
+            
+            float c_re = args->x0 + x * dx;
+
+            // --- 手動內聯 mandel 函式的邏輯 ---
+            float z_re = c_re;
+            float z_im = c_im;
+            int iter;
+
+            // 4. 這是計算最密集的「熱迴圈」
+            for (iter = 0; iter < args->maxIterations; ++iter) {
+                
+                // 💡 *** 關鍵微觀優化 ***
+                // 預先計算平方值，避免在下一行重複計算
+                float z_re_sq = z_re * z_re;
+                float z_im_sq = z_im * z_im;
+
+                // 判斷是否逃逸
+                if (z_re_sq + z_im_sq > 4.f) {
+                    break;
+                }
+
+                // 計算下一次迭代的值 (使用已算好的平方值)
+                float new_re = z_re_sq - z_im_sq;
+                float new_im = 2.f * z_re * z_im;
+                z_re = c_re + new_re;
+                z_im = c_im + new_im;
+            }
+            
+            // 5. 直接將結果寫入 output 陣列
+            args->output[row_start_index + x] = iter;
+        }
+    }
 }
 
 //
