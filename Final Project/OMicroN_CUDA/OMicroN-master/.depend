@@ -1,0 +1,20 @@
+application.o: src/application.cpp src/application.h src/settings.h \
+ src/microstructure.h src/stateVars.h src/utils/loguru.hpp \
+ src/ThermoChemKinetics.h src/utils/hdf5_utils.h src/orientation.h \
+ src/ThermoChemKinetics.h src/nodes.h
+main.o: src/main.cpp src/application.h src/settings.h \
+ src/microstructure.h src/stateVars.h src/utils/loguru.hpp \
+ src/ThermoChemKinetics.h src/utils/hdf5_utils.h src/orientation.h \
+ src/ThermoChemKinetics.h src/nodes.h
+microstructure.o: src/microstructure.cpp src/microstructure.h \
+ src/settings.h src/stateVars.h src/utils/loguru.hpp \
+ src/ThermoChemKinetics.h src/utils/hdf5_utils.h src/orientation.h \
+ src/ThermoChemKinetics.h src/nodes.h src/application.h
+orientation.o: src/orientation.cpp src/orientation.h src/settings.h
+settings.o: src/settings.cpp src/settings.h
+stateVars.o: src/stateVars.cpp src/stateVars.h src/utils/loguru.hpp \
+ src/ThermoChemKinetics.h src/utils/hdf5_utils.h
+ThermoChemKinetics.o: src/ThermoChemKinetics.cpp src/ThermoChemKinetics.h \
+ src/utils/hdf5_utils.h
+hdf5_utils.o: src/utils/hdf5_utils.cpp src/utils/hdf5_utils.h
+loguru.o: src/utils/loguru.cpp src/utils/loguru.hpp
